@@ -5,11 +5,16 @@ in vec2 texCoord;
 
 uniform sampler2D tex1;
 uniform sampler2D tex2;
-uniform vec3 colour;
+uniform vec3 lightColour;
 
 
 void main() {
-    FragColor = texture(tex1, texCoord);// mix(texture(tex1, texCoord), texture(tex2, texCoord), 0.2) * vec4(colour, 1.0);
+    vec4 objColour = /*mix(texture(tex1, texCoord), texture(tex2, texCoord), 0.2)*/ vec4(1.0, 0.5, 0.31, 1.0);
+
+    float ambientStrength = 0.1;
+    vec3 ambient = ambientStrength * lightColour;
+    
+    FragColor = objColour * vec4(ambient, 1.0);
 }
 
 /*
