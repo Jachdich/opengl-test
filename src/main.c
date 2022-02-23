@@ -270,6 +270,7 @@ int main() {
         
         mat4 view = GLM_MAT4_IDENTITY_INIT;
         mat4 projection = GLM_MAT4_IDENTITY_INIT;
+
         glm_translate(view, (vec3){0, 0, -3});
         glm_perspective(GLM_PI/2, (float)winwidth / (float)winheight, 0.1, 100, projection);
 
