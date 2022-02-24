@@ -13,6 +13,7 @@ uniform mat4 projection;
 void main() {
     fragPos = vec3(model * vec4(aPos, 1.0));
     texCoord = uv;
-    normal = aNormal;
+    //TODO will not work with unequal scaling, but that sounds hard to deal with
+    normal = mat3(model) * aNormal;
     gl_Position = projection * view * vec4(fragPos, 1.0);
 }

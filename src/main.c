@@ -298,6 +298,7 @@ int main() {
         glUniformMatrix4fv(glGetUniformLocation(cube.shader, "projection"), 1, GL_FALSE, (float*)projection);
         glUniform3fv(glGetUniformLocation(cube.shader, "lightColour"), 1, (float*)colour);
         glUniform3fv(glGetUniformLocation(cube.shader, "lightPos"), 1, (float*)lightPos);
+        glUniform3fv(glGetUniformLocation(cube.shader, "viewPos"), 1, (float*)cam.pos);
 
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, cube.textures[0]);
