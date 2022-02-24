@@ -1,20 +1,26 @@
 #version 330 core
 out vec4 FragColor;
-//in vec2 gl_FragCoord;
 in vec2 texCoord;
+in vec3 normal;
+in vec3 fragPos;
 
 uniform sampler2D tex1;
 uniform sampler2D tex2;
 uniform vec3 lightColour;
-
+uniform vec3 lightPos;
 
 void main() {
     vec4 objColour = /*mix(texture(tex1, texCoord), texture(tex2, texCoord), 0.2)*/ vec4(1.0, 0.5, 0.31, 1.0);
 
     float ambientStrength = 0.1;
     vec3 ambient = ambientStrength * lightColour;
+
+    vec3 norm = normalize(normal);
+    vec3 lightDir = normalize(lightPos - fragPos);
+    float diff = max(dot(norm, lightDir), 0.0);
+    vec3 diffuse = diff * lightColour;
     
-    FragColor = objColour * vec4(ambient, 1.0);
+    FragColor = objColour * vec4(ambient + diffuse, 1.0);
 }
 
 /*
