@@ -297,8 +297,17 @@ int main() {
         glUniformMatrix4fv(glGetUniformLocation(cube.shader, "view"), 1, GL_FALSE, (float*)view);
         glUniformMatrix4fv(glGetUniformLocation(cube.shader, "projection"), 1, GL_FALSE, (float*)projection);
         glUniform3fv(glGetUniformLocation(cube.shader, "lightColour"), 1, (float*)colour);
-        glUniform3fv(glGetUniformLocation(cube.shader, "lightPos"), 1, (float*)lightPos);
+        glUniform3fv(glGetUniformLocation(cube.shader, "light.position"), 1, (float*)lightPos);
         glUniform3fv(glGetUniformLocation(cube.shader, "viewPos"), 1, (float*)cam.pos);
+
+        glUniform3f(glGetUniformLocation(cube.shader, "material.ambient"), 1.0f, 0.5f, 0.31f);
+        glUniform3f(glGetUniformLocation(cube.shader, "material.diffuse"), 1.0f, 0.5f, 0.31f);
+        glUniform3f(glGetUniformLocation(cube.shader, "material.specular"), 0.5f, 0.5f, 0.5f);
+        glUniform1f(glGetUniformLocation(cube.shader, "material.shininess"), 32.0f);
+
+        glUniform3f(glGetUniformLocation(cube.shader, "light.ambient"),  0.2f, 0.2f, 0.2f);
+        glUniform3f(glGetUniformLocation(cube.shader, "light.diffuse"),  0.5f, 0.5f, 0.5f);
+        glUniform3f(glGetUniformLocation(cube.shader, "light.specular"), 1.0f, 1.0f, 1.0f); 
 
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, cube.textures[0]);
