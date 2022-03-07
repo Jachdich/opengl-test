@@ -254,6 +254,14 @@ void mesh_delete(Mesh *obj) {
     glDeleteProgram(obj->shader);
 }
 
+void mesh_draw(Mesh *mesh, mat4 view, mat4 projection) {
+    glUseProgram(mesh->shader);
+    glUniform1i(glGetUniformLocation(mesh->shader, "tex1"), 0);
+    glUniformMatrix4fv(glGetUniformLocation(mesh->shader, "view"), 1, GL_FALSE, (float*)view);
+    glUniformMatrix4fv(glGetUniformLocation(mesh->shader, "projection"), 1, GL_FALSE, (float*)projection);
+    glUniform3fv(glGetUniformLocation(mesh->shader, "viewPos"), 1, (float*)cam.pos);
+}
+
 int main() {
     cam_init(&cam);
 
@@ -327,16 +335,6 @@ int main() {
 
         cam_update(&cam, delta_time);
         cam_view_matrix(&cam, view);
-
-        glUseProgram(cube.shader);
-        glUniform1i(glGetUniformLocation(cube.shader, "tex1"), 0);
-        glUniformMatrix4fv(glGetUniformLocation(cube.shader, "view"), 1, GL_FALSE, (float*)view);
-        glUniformMatrix4fv(glGetUniformLocation(cube.shader, "projection"), 1, GL_FALSE, (float*)projection);
-        glUniform3fv(glGetUniformLocation(cube.shader, "viewPos"), 1, (float*)cam.pos);
-
-        glUniform1i(glGetUniformLocation(cube.shader, "material.diffuse"), 1);
-        glUniform1i(glGetUniformLocation(cube.shader, "material.specular"), 2);
-        glUniform1f(glGetUniformLocation(cube.shader, "material.shininess"), 32.0f);
         
         glUniform3fv(glGetUniformLocation(cube.shader, "light.position"), 1, (float*)lightPos);
         glUniform3f(glGetUniformLocation(cube.shader,  "light.ambient"),  0.1f, 0.1f, 0.1f);
