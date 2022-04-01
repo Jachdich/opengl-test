@@ -29,7 +29,6 @@ typedef enum TexType TexType;
 struct Vertex {
     vec3 pos;
     vec2 uv;
-    vec3 norm;
 };
 typedef struct Vertex Vertex;
 
@@ -47,65 +46,6 @@ struct Mesh {
     Vertex *vertices;
 };
 typedef struct Mesh Mesh;
-
-
-Vertex vertices[] = {
-   {{-0.5f, -0.5f, -0.5f},  {0.0f, 0.0f},  { 0.0f,  0.0f, -1.0f}},
-   {{ 0.5f, -0.5f, -0.5f},  {1.0f, 0.0f},  { 0.0f,  0.0f, -1.0f}},
-   {{ 0.5f,  0.5f, -0.5f},  {1.0f, 1.0f},  { 0.0f,  0.0f, -1.0f}},
-   {{ 0.5f,  0.5f, -0.5f},  {1.0f, 1.0f},  { 0.0f,  0.0f, -1.0f}}, 
-   {{-0.5f,  0.5f, -0.5f},  {0.0f, 1.0f},  { 0.0f,  0.0f, -1.0f}}, 
-   {{-0.5f, -0.5f, -0.5f},  {0.0f, 0.0f},  { 0.0f,  0.0f, -1.0f}}, 
-   {{-0.5f, -0.5f,  0.5f},  {0.0f, 0.0f},  { 0.0f,  0.0f, 1.0f}},
-   {{ 0.5f, -0.5f,  0.5f},  {1.0f, 0.0f},  { 0.0f,  0.0f, 1.0f}},
-   {{ 0.5f,  0.5f,  0.5f},  {1.0f, 1.0f},  { 0.0f,  0.0f, 1.0f}},
-   {{ 0.5f,  0.5f,  0.5f},  {1.0f, 1.0f},  { 0.0f,  0.0f, 1.0f}},
-   {{-0.5f,  0.5f,  0.5f},  {0.0f, 1.0f},  { 0.0f,  0.0f, 1.0f}},
-   {{-0.5f, -0.5f,  0.5f},  {0.0f, 0.0f},  { 0.0f,  0.0f, 1.0f}},
-   {{-0.5f,  0.5f,  0.5f},  {1.0f, 0.0f},  {-1.0f,  0.0f,  0.0f}},
-   {{-0.5f,  0.5f, -0.5f},  {1.0f, 1.0f},  {-1.0f,  0.0f,  0.0f}},
-   {{-0.5f, -0.5f, -0.5f},  {0.0f, 1.0f},  {-1.0f,  0.0f,  0.0f}},
-   {{-0.5f, -0.5f, -0.5f},  {0.0f, 1.0f},  {-1.0f,  0.0f,  0.0f}},
-   {{-0.5f, -0.5f,  0.5f},  {0.0f, 0.0f},  {-1.0f,  0.0f,  0.0f}},
-   {{-0.5f,  0.5f,  0.5f},  {1.0f, 0.0f},  {-1.0f,  0.0f,  0.0f}},
-   {{ 0.5f,  0.5f,  0.5f},  {1.0f, 0.0f},  { 1.0f,  0.0f,  0.0f}},
-   {{ 0.5f,  0.5f, -0.5f},  {1.0f, 1.0f},  { 1.0f,  0.0f,  0.0f}},
-   {{ 0.5f, -0.5f, -0.5f},  {0.0f, 1.0f},  { 1.0f,  0.0f,  0.0f}},
-   {{ 0.5f, -0.5f, -0.5f},  {0.0f, 1.0f},  { 1.0f,  0.0f,  0.0f}},
-   {{ 0.5f, -0.5f,  0.5f},  {0.0f, 0.0f},  { 1.0f,  0.0f,  0.0f}},
-   {{ 0.5f,  0.5f,  0.5f},  {1.0f, 0.0f},  { 1.0f,  0.0f,  0.0f}},
-   {{-0.5f, -0.5f, -0.5f},  {0.0f, 1.0f},  { 0.0f, -1.0f,  0.0f}},
-   {{ 0.5f, -0.5f, -0.5f},  {1.0f, 1.0f},  { 0.0f, -1.0f,  0.0f}},
-   {{ 0.5f, -0.5f,  0.5f},  {1.0f, 0.0f},  { 0.0f, -1.0f,  0.0f}},
-   {{ 0.5f, -0.5f,  0.5f},  {1.0f, 0.0f},  { 0.0f, -1.0f,  0.0f}},
-   {{-0.5f, -0.5f,  0.5f},  {0.0f, 0.0f},  { 0.0f, -1.0f,  0.0f}},
-   {{-0.5f, -0.5f, -0.5f},  {0.0f, 1.0f},  { 0.0f, -1.0f,  0.0f}},
-   {{-0.5f,  0.5f, -0.5f},  {0.0f, 1.0f},  { 0.0f,  1.0f,  0.0f}},
-   {{ 0.5f,  0.5f, -0.5f},  {1.0f, 1.0f},  { 0.0f,  1.0f,  0.0f}},
-   {{ 0.5f,  0.5f,  0.5f},  {1.0f, 0.0f},  { 0.0f,  1.0f,  0.0f}},
-   {{ 0.5f,  0.5f,  0.5f},  {1.0f, 0.0f},  { 0.0f,  1.0f,  0.0f}},
-   {{-0.5f,  0.5f,  0.5f},  {0.0f, 0.0f},  { 0.0f,  1.0f,  0.0f}},
-   {{-0.5f,  0.5f, -0.5f},  {0.0f, 1.0f},  { 0.0f,  1.0f,  0.0f}},
-};
-
-vec3 cubes[1000] = {
-    (vec3){0, 0, 0},
-    (vec3){-1, -1, 0},
-    (vec3){1, 0, -8}
-};
-
-int n_cubes = 3;
-
-void add_random_block() {
-    cubes[n_cubes][0] = rand() % 20 - 10;
-    cubes[n_cubes][1] = rand() % 20 - 10;
-    cubes[n_cubes][2] = rand() % 20 - 10;
-
-    n_cubes++;
-}
-
-
-vec3 lightPos = {1.2, 1.0, 2.0};
 
 bool wireframe = false;
 bool edge = true;
@@ -140,19 +80,6 @@ void process_input(GLFWwindow *win) {
         edge = true;
     }
 
-    if (glfwGetKey(win, GLFW_KEY_N) == GLFW_PRESS) {
-        if (edge2) {
-            edge2 = false;
-            cubes[n_cubes][0] = (int)cam.pos[0];
-            cubes[n_cubes][1] = (int)cam.pos[1];
-            cubes[n_cubes][2] = (int)cam.pos[2];
-
-            n_cubes++;
-        }
-    } else {
-        edge2 = true;
-    }
-    
     cam_keyboard_move(&cam,
         glfwGetKey(win, GLFW_KEY_W) == GLFW_PRESS,
         glfwGetKey(win, GLFW_KEY_A) == GLFW_PRESS,
@@ -215,16 +142,22 @@ void free_textures(Texture *texs, size_t n) {
     free(texs);
 }
 
-Mesh mesh_init(Vertex *vertices, size_t num_vertices, const char *vertfile, const char *fragfile, Texture *textures, size_t num_textures) {
+Mesh mesh_init(Vertex *vertices, size_t num_vertices, 
+               int *indices, size_t num_indices,
+               const char *vertfile, const char *fragfile,
+               Texture *textures, size_t num_textures) {
     Mesh obj;
     
     glGenBuffers(1, &obj.vbo);
+    glGenBuffers(1, &obj.ebo);
     glGenVertexArrays(1, &obj.vao);
 
     glBindVertexArray(obj.vao);
 
     glBindBuffer(GL_ARRAY_BUFFER, obj.vbo);
-    glBufferData(GL_ARRAY_BUFFER, num_vertices * sizeof(Vertex), vertices, GL_STATIC_DRAW);    
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj.ebo);
+    glBufferData(GL_ARRAY_BUFFER, num_vertices * sizeof(Vertex), vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, num_indices * sizeof(*indices), indices, GL_STATIC_DRAW);
 
     //pos component of vbo
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), NULL);
@@ -235,8 +168,8 @@ Mesh mesh_init(Vertex *vertices, size_t num_vertices, const char *vertfile, cons
     glEnableVertexAttribArray(1);
 
     //normal component of vbo
-    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(5*sizeof(float)));
-    glEnableVertexAttribArray(2);
+    //glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(5*sizeof(float)));
+    //glEnableVertexAttribArray(2);
     
     obj.shader = make_shader_program(vertfile, fragfile);
     glUseProgram(obj.shader);
@@ -290,17 +223,53 @@ int main() {
     glfwSetCursorPosCallback(window, mouse_callback);  
 
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_PRIMITIVE_RESTART);
 
-    Texture *textures = load_textures((const char*[]){"container.png", "container2.png", "container2_specular.png"}, (const TexType[]){TEX_DIFFUSE, TEX_DIFFUSE, TEX_SPECULAR}, 3);
+    Texture *textures = load_textures((const char*[]){"tilemap.png"}, (const TexType[]){TEX_DIFFUSE}, 1);
 
-    Mesh cube  = mesh_init(vertices, sizeof(vertices) / sizeof(Vertex), "shaders/vertex.glsl", "shaders/frag.glsl", textures, 3);
-    Mesh light = mesh_init(vertices, sizeof(vertices) / sizeof(Vertex), "shaders/vertex.glsl", "shaders/lightfrag.glsl", NULL, 0);
-    
-    /*data = stbi_load("awesomeface.png", &width, &height, &nrChannels, 0);
-    glBindTexture(GL_TEXTURE_2D, textures[1]);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
-    glGenerateMipmap(GL_TEXTURE_2D);
-    stbi_image_free(data);*/
+    int num_vertices = 0;
+    int num_indices = 0;
+    Vertex *vertices = malloc(sizeof(*vertices) * 100000); //allocate way too much (test)
+    int *indices = malloc(sizeof(*indices) * 100000);
+
+    uint32_t rad = 5;
+    int heights[] = {
+        0, 0, 2, 3, 0,
+        0, 1, 1, 4, 0,
+        0, 0, 2, 4, 2,
+        1, 2, 3, 3, 0,
+        0, 2, 2, 3, 4
+    };
+
+    int types[] = {
+        3, 4, 3, 4, 1,
+        0, 2, 0, 4, 1,
+        3, 3, 2, 0, 2,
+        2, 2, 4, 4, 3,
+        3, 1, 3, 0, 2
+    };
+
+    //for (uint32_t i = 0; i < sizeof(tiles) / sizeof(tiles[0]); i++) {
+     //   quad(tiles[i], vertices, &num_vertices);
+    //}
+
+    for (uint32_t y = 0; y < (rad - 1) * 2; y++) {
+        for (uint32_t x = 0; x < rad * 2; x++) {
+            int type = types[y/2 * rad + x/2];
+            vec3 tile  = {x, y, heights[y/2 * rad + x/2]};
+            vec3 tile2 = {x, y + 1, heights[(y + 1) / 2 * rad + x/2]};
+            indices[num_indices++] = num_vertices;
+            glm_vec2_copy((vec2){x % 2 / 4.0 + type / 4.0, 0}, vertices[num_vertices].uv);
+            glm_vec3_copy(tile,  vertices[num_vertices++].pos);
+            indices[num_indices++] = num_vertices;
+            glm_vec2_copy((vec2){x % 2 / 4.0 + type / 4.0, 1 / 4.0}, vertices[num_vertices].uv);
+            glm_vec3_copy(tile2, vertices[num_vertices++].pos);
+        }
+        indices[num_indices++] = 65535;
+    }
+    glPrimitiveRestartIndex(65535);
+
+    Mesh cube = mesh_init(vertices, num_vertices, indices, num_indices, "shaders/vertex.glsl", "shaders/frag.glsl", textures, 1);
 
     float totalTime = 0;
     float lastNow = glfwGetTime();
@@ -317,7 +286,6 @@ int main() {
             printf("%f\n", frames / totalTime);
             totalTime = 0;
             frames = 0;
-            add_random_block();
         }
 
         process_input(window);
@@ -326,7 +294,6 @@ int main() {
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        vec3 colour = {1, 1, 1};
         mat4 view = GLM_MAT4_IDENTITY_INIT;
         mat4 projection = GLM_MAT4_IDENTITY_INIT;
 
@@ -336,46 +303,21 @@ int main() {
         cam_update(&cam, delta_time);
         cam_view_matrix(&cam, view);
         
-        glUniform3fv(glGetUniformLocation(cube.shader, "light.position"), 1, (float*)lightPos);
-        glUniform3f(glGetUniformLocation(cube.shader,  "light.ambient"),  0.1f, 0.1f, 0.1f);
-        glUniform3f(glGetUniformLocation(cube.shader,  "light.diffuse"),  1.0f, 1.0f, 1.0f);
-        glUniform3f(glGetUniformLocation(cube.shader,  "light.specular"), 1.0f, 1.0f, 1.0f); 
-        glUniform1f(glGetUniformLocation(cube.shader,  "light.linear"),   0.09f);
-        glUniform1f(glGetUniformLocation(cube.shader,  "light.quadratic"),0.032f); 
+        glBindVertexArray(cube.vao);
+        mat4 model = GLM_MAT4_IDENTITY_INIT;
+        glUseProgram(cube.shader);
+        glUniformMatrix4fv(glGetUniformLocation(cube.shader, "view"), 1, GL_FALSE, (float*)view);
+        glUniformMatrix4fv(glGetUniformLocation(cube.shader, "projection"), 1, GL_FALSE, (float*)projection);
+        glUniform3fv(glGetUniformLocation(cube.shader, "viewPos"), 1, (float*)cam.pos);
+        glUniformMatrix4fv(glGetUniformLocation(cube.shader, "model"), 1, GL_FALSE, (float*)model);
 
-        glUniform3f(glGetUniformLocation(cube.shader, "dLight.direction"), -0.5345224838248488f, -0.8017837257372731f, -0.2672612419124244f);
-        glUniform3f(glGetUniformLocation(cube.shader, "dLight.ambient"),  0.3f, 0.3f, 0.3f);
-        glUniform3f(glGetUniformLocation(cube.shader, "dLight.diffuse"),  1.0f, 1.0f, 1.0f);
-        glUniform3f(glGetUniformLocation(cube.shader, "dLight.specular"), 1.0f, 1.0f, 1.0f); 
-
+        glUniform1i(glGetUniformLocation(cube.shader, "tex1"), 0);
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, cube.textures[0].id);
-        glActiveTexture(GL_TEXTURE1);
-        glBindTexture(GL_TEXTURE_2D, cube.textures[1].id);
-        glActiveTexture(GL_TEXTURE2);
-        glBindTexture(GL_TEXTURE_2D, cube.textures[2].id);
-        
-        glBindVertexArray(cube.vao);
-        for (int32_t i = 0; i < n_cubes; i++) {
-            mat4 model = GLM_MAT4_IDENTITY_INIT;
-            glm_translate(model, cubes[i]);
-            //glm_rotate(model, glfwGetTime() * 0.9f, (vec3){0.5f, 1.0f, 0.0f});
-            glUniformMatrix4fv(glGetUniformLocation(cube.shader, "model"), 1, GL_FALSE, (float*)model);
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-        }
 
-        glUseProgram(light.shader);
-        glUniformMatrix4fv(glGetUniformLocation(light.shader, "view"), 1, GL_FALSE, (float*)view);
-        glUniformMatrix4fv(glGetUniformLocation(light.shader, "projection"), 1, GL_FALSE, (float*)projection);
-        glUniform3fv(glGetUniformLocation(light.shader, "colour"), 1, (float*)colour);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, cube.ebo);
+        glDrawElements(GL_TRIANGLE_STRIP, num_vertices, GL_UNSIGNED_INT, 0);
 
-        glBindVertexArray(light.vao);
-        mat4 model = GLM_MAT4_IDENTITY_INIT;
-        glm_translate(model, lightPos);
-        glm_scale(model, (vec3){0.3, 0.3, 0.3});
-        glUniformMatrix4fv(glGetUniformLocation(light.shader, "model"), 1, GL_FALSE, (float*)model);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
-                            
         glfwSwapBuffers(window);
         glfwPollEvents();
         frames++;
@@ -384,5 +326,6 @@ int main() {
     glfwTerminate();
     
     mesh_delete(&cube);
+    free(vertices);
     return 0;
 }
