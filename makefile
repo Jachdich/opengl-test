@@ -1,7 +1,7 @@
 SOURCES := $(shell find src -type f -name "*.c")
 HEADERS := $(shell find include -type f -name "*.h")
 OBJECTS := $(patsubst src/%,obj/%,$(SOURCES:.c=.o))
-LIBS := -lglfw -lGL -lX11 -lpthread -lXrandr -lXi -ldl -lm
+LIBS := -lglfw -lGL -lX11 -lpthread -lXrandr -lXi -ldl -lm -ljson-c
 
 main: $(OBJECTS)
 	gcc $(OBJECTS) $(LIBS) -o $@
