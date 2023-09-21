@@ -4,7 +4,9 @@
 
 void cam_init(Camera *cam) {
     float f0 = 0.0f;
+    vec3 v0 = {0.0, 0.0, 0.0};
     memset(cam->pos,   *((int*)&f0), 3 * sizeof(float));
+    glm_vec3_copy(v0, cam->pos);
     memset(cam->front, *((int*)&f0), 3 * sizeof(float));
     memset(cam->up,    *((int*)&f0), 3 * sizeof(float));
     memset(cam->vel,   *((int*)&f0), 3 * sizeof(float));
@@ -53,7 +55,7 @@ void cam_keyboard_move(Camera *cam, bool w, bool a, bool s, bool d, bool shift, 
     if (shift) glm_vec3_sub(cam->accel, (vec3){0, cam->speed * 4, 0}, cam->accel);
 }
 
-void cam_view_matrix(Camera *cam, mat4 view) {
+void cam_view_matrix(Camera *cam, vec3 view) {
     vec3 direction = {
         cos(cam->yaw) * cos(cam->pitch),
         sin(cam->pitch),
@@ -64,7 +66,8 @@ void cam_view_matrix(Camera *cam, mat4 view) {
 
     vec3 camLook;
     glm_vec3_add(cam->pos, cam->front, camLook);
-    glm_lookat(cam->pos, camLook, cam->up, view);
+    glm_vec3_dup(direction, view);
+    // glm_lookat(cam->pos, camLook, cam->up, view);
 }
 
 void cam_update(Camera *cam, float delta_time) {

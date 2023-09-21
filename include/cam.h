@@ -18,6 +18,6 @@ typedef struct Camera Camera;
 void cam_init(Camera *cam);
 void cam_mouse_move(Camera *cam, double xmove, double ymove);
 void cam_keyboard_move(Camera *cam, bool w, bool a, bool s, bool d, bool shift, bool space);
-void cam_view_matrix(Camera *cam, mat4 view);
+void cam_view_matrix(Camera *cam, vec3 view);
 void cam_update(Camera *cam, float delta_time);
 
