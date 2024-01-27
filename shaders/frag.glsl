@@ -132,8 +132,9 @@ vec3 draw_star(vec2 uv, vec2 centre, vec3 colour, float radius, float luminance)
 void main() {
     // Normalized pixel coordinates (from 0 to 1)
     // vec2 uv = fragCoord / 360.0; //fragCoord/iResolution.y;
-    vec2 d = resolution.xy / 360.0;
-    vec2 uv = (fragPos.xy + 0.5) * d;
+    vec2 d = resolution.xy / resolution.y;
+    vec2 uv = (fragPos.xy * 0.5 + 0.5);
+    uv.x *= resolution.x / resolution.y;
 
     vec3 col;
     col += draw_star(uv, vec2(0.5, 0.5), vec3(1.0, 1.0, 0.7), 0.006, 3.0);
