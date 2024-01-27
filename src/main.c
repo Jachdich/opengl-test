@@ -167,6 +167,8 @@ int main() {
         glUseProgram(shader);
         glBindVertexArray(vao);
 
+        glUniform2f(glGetUniformLocation(shader, "resolution"), (float)winwidth, (float)winheight);
+
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
         glfwSwapBuffers(window);

@@ -3,6 +3,8 @@
 out vec4 FragColor;
 in vec3 fragPos;
 
+uniform vec2 resolution;
+
 
 // A single iteration of Bob Jenkins' One-At-A-Time hashing algorithm.
 uint hash( uint x ) {
@@ -130,8 +132,8 @@ vec3 draw_star(vec2 uv, vec2 centre, vec3 colour, float radius, float luminance)
 void main() {
     // Normalized pixel coordinates (from 0 to 1)
     // vec2 uv = fragCoord / 360.0; //fragCoord/iResolution.y;
-    // vec2 d = iResolution.xy / 360.0;
-    vec2 uv = (fragPos.xy + 1.0) / 2.0;
+    vec2 d = resolution.xy / 360.0;
+    vec2 uv = (fragPos.xy + 0.5) * d;
 
     vec3 col;
     col += draw_star(uv, vec2(0.5, 0.5), vec3(1.0, 1.0, 0.7), 0.006, 3.0);
@@ -140,8 +142,8 @@ void main() {
     col += draw_star(uv, vec2(0.9, 0.4), vec3(0.7, 0.7, 1.0), 0.010, 5.0);
     col += draw_star(uv, vec2(0.7, 0.2), vec3(0.86, 0.9, 1.0), 0.006, 3.0);
     col += draw_star(uv, vec2(1.0, 0.1), vec3(1.0, 1.0, 0.9), 0.005, 3.5);
-    // for (int i = 0; i < 100; i++) {
-    //     col += draw_star(uv, vec2(random(float(i)), random(float(i) * 100.0)), vec3(1.0, 1.0, 0.9), 0.005, 3.5);
-    // }
+    for (int i = 0; i < 100; i++) {
+        col += draw_star(uv, vec2(random(float(i)), random(float(i) * 100.0)) * d, vec3(1.0, 1.0, 0.9), 0.005, 3.5);
+    }
     FragColor = vec4(col, 1.0);
 }
