@@ -83,9 +83,9 @@ vec3 draw_star(vec2 uv, vec2 centre, vec3 colour, float radius, float luminance)
     if (dist > halo_radius * 5.0) return vec3(0.0, 0.0, 0.0);
     dist /= halo_radius;
 
-    float ray_strength = pow(luminance, 2.0) / 10.0;
-    if (ray_strength > 1.0) {
-        float ray_w = luminance / 4000.0;
+    float ray_strength = pow(luminance, 1.0) / 2.0;
+    if (ray_strength > 0.2) {
+        float ray_w = 0.0;
         float ray_l = halo_radius * 5.0;
         const float PI = 3.141592;
         for (float theta = -PI + PI/6.0; theta < PI + PI/6.0; theta += (PI/3.0)) {
@@ -96,7 +96,7 @@ vec3 draw_star(vec2 uv, vec2 centre, vec3 colour, float radius, float luminance)
             vec2 c = centre + ray_l * ray_dir;
 
             float dist_to_tri = udTriangle(vec3(uv, 0.0), vec3(a, 0.0), vec3(b, 0.0), vec3(c, 0.0));
-            const float threshhold = 0.008;
+            const float threshhold = 0.005;
             if (dist_to_tri <= threshhold) {
                 dist /= max(ray_strength * (threshhold - dist_to_tri) / threshhold, 1.0);
             }
@@ -131,10 +131,13 @@ vec3 draw_star(vec2 uv, vec2 centre, vec3 colour, float radius, float luminance)
 
 void main() {
     // Normalized pixel coordinates (from 0 to 1)
-    // vec2 uv = fragCoord / 360.0; //fragCoord/iResolution.y;
-    vec2 d = resolution.xy / resolution.y;
-    vec2 uv = (fragPos.xy * 0.5 + 0.5);
-    uv.x *= resolution.x / resolution.y;
+    // // vec2 uv = fragCoord / 360.0; //fragCoord/iResolution.y;
+    // vec2 d = resolution.xy / resolution.y;
+    // vec2 uv = (fragPos.xy * 0.5 + 0.5);
+    // uv.x *= resolution.x / resolution.y;
+    // vec2 uv = fragPos / 160.0; //fragCoord/iResolution.y;
+    vec2 d = resolution.xy / 1920.0;
+    vec2 uv = (fragPos.xy + 0.5) * d;
 
     vec3 col;
     col += draw_star(uv, vec2(0.5, 0.5), vec3(1.0, 1.0, 0.7), 0.006, 3.0);
@@ -143,8 +146,8 @@ void main() {
     col += draw_star(uv, vec2(0.9, 0.4), vec3(0.7, 0.7, 1.0), 0.010, 5.0);
     col += draw_star(uv, vec2(0.7, 0.2), vec3(0.86, 0.9, 1.0), 0.006, 3.0);
     col += draw_star(uv, vec2(1.0, 0.1), vec3(1.0, 1.0, 0.9), 0.005, 3.5);
-    for (int i = 0; i < 100; i++) {
-        col += draw_star(uv, vec2(random(float(i)), random(float(i) * 100.0)) * d, vec3(1.0, 1.0, 0.9), 0.005, 3.5);
-    }
+    // for (int i = 0; i < 100; i++) {
+    //     col += draw_star(uv, vec2(random(float(i)), random(float(i) * 100.0)) * d, vec3(1.0, 1.0, 0.9), 0.005, 3.5);
+    // }
     FragColor = vec4(col, 1.0);
 }
